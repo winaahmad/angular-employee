@@ -21,7 +21,7 @@ export class EmployeeFormComponent {
   }
 
   onSubmit() {
-    this.employeeService.add(this.employee).subscribe(result => this.goToEmployeeList());
+    this.employeeService.addEmployee(this.employee).subscribe(result => this.goToEmployeeList());
   }
 
   goToEmployeeList() {

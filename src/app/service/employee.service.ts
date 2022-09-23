@@ -11,7 +11,7 @@ export class EmployeeService {
   private employeesURL: string;
 
   constructor(private http: HttpClient) {
-    this.employeesURL = 'http://localhost:4200/employee'
+    this.employeesURL = 'api/employee'
   }
 
   // get all
@@ -20,14 +20,25 @@ export class EmployeeService {
   }
 
   // add new 
-  public add(employee : Employee) {
+  public addEmployee(employee : Employee) {
     return this.http.post<Employee>(this.employeesURL, employee);
   }
   
   // get by id
+  public getbyId(id : BigInteger) : Observable<Employee> {
+    const url = `${this.employeesURL}/${id}`;
+    return this.http.get<Employee>(url);
+  }
 
   // update
+  public updateEmployee(employee : Employee, id : BigInteger) : Observable<any> {
+    const url = `${this.employeesURL}/${id}`;
+    return this.http.put<Employee>(url, employee);
+  }
 
   // delete
-
+  public deleteEmployee(id : BigInteger) : Observable<Employee> {
+    const url = `${this.employeesURL}/${id}`;
+    return this.http.delete<Employee>(url);
+  }
 }
